@@ -11,7 +11,6 @@ import {
 import { FloralBackground } from './components/FloralBackground';
 import { SocialCard } from './components/SocialCard';
 import { PictureSection } from './components/PictureSection';
-import { QrCodeModal } from './components/QrCodeModal';
 import { 
   LinkedInIcon, 
   InstagramIcon, 
@@ -21,7 +20,6 @@ import {
   FlowerPetalOrnament
 } from './components/SocialIcons';
 import { 
-  Sparkles, 
   ExternalLink, 
   Award
 } from 'lucide-react';
@@ -29,7 +27,6 @@ import {
 export default function App() {
   const currentPhoto = USER_INFO.defaultPortrait;
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [isQrOpen, setIsQrOpen] = useState(false);
 
   const filteredProfiles = activeFilter === 'all'
     ? SOCIAL_PROFILES
@@ -225,6 +222,16 @@ export default function App() {
           <div className="text-[11px] text-purple-900/50 pt-1">
             © {new Date().getFullYear()} Michelle Dora Osae-Poku · SRC Vice President, UPSA. All rights reserved.
           </div>
+
+          {/* Sits at the very bottom right of the page */}
+          <div className="flex justify-end pt-3 sm:pt-4 pr-1 sm:pr-2">
+            <span 
+              className="font-signature text-2xl sm:text-3xl text-purple-900/40 select-none tracking-wide hover:text-purple-900/70 transition-colors"
+              title="~Tracy"
+            >
+              ~Tracy
+            </span>
+          </div>
         </footer>
 
       </div>
@@ -274,24 +281,7 @@ export default function App() {
           <FacebookIcon className="w-5 h-5" />
           <span className="text-[10px] font-medium text-slate-700">Facebook</span>
         </a>
-
-        <button
-          onClick={() => setIsQrOpen(true)}
-          className="flex flex-col items-center gap-0.5 text-purple-700 p-1.5 focus:outline-none"
-          aria-label="Open QR code"
-        >
-          <div className="w-5 h-5 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-purple-600" />
-          </div>
-          <span className="text-[10px] font-medium text-slate-700">QR / Share</span>
-        </button>
       </div>
-
-      {/* Modals */}
-      <QrCodeModal
-        isOpen={isQrOpen}
-        onClose={() => setIsQrOpen(false)}
-      />
     </div>
   );
 }

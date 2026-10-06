@@ -11,6 +11,10 @@
   h1, h2, h3, .font-serif-elegant {
     font-family: 'Cormorant Garamond', Georgia, serif;
   }
+
+  .font-signature {
+    font-family: 'Alex Brush', cursive, Georgia, serif;
+  }
 }
 
 @keyframes floatSlow {
