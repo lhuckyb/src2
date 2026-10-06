@@ -1,3 +1,7 @@
+import portraitImage from '../assets/images/michelle_dora_official.jpg';
+import bannerImage from '../assets/images/floral_banner_1791302136350.jpg';
+import gardenImage from '../assets/images/lavender_garden_1791302147857.jpg';
+
 export interface SocialProfile {
   id: string;
   name: string;
@@ -25,9 +29,9 @@ export const USER_INFO = {
   bio: "Welcome to my official digital hub. Connecting student leadership, corporate vision, and community across professional milestones and creative storytelling.",
   location: "Accra, Ghana · Global & Connected",
   email: "connect@michelledora.com",
-  defaultPortrait: "/src/assets/images/michelle_dora_official.jpg",
-  bannerImage: "/src/assets/images/floral_banner_1791302136350.jpg",
-  gardenImage: "/src/assets/images/lavender_garden_1791302147857.jpg",
+  defaultPortrait: portraitImage,
+  bannerImage: bannerImage,
+  gardenImage: gardenImage,
 };
 
 export const SOCIAL_PROFILES: SocialProfile[] = [
