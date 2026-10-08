@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   USER_INFO, 
   SOCIAL_PROFILES 
@@ -15,7 +15,9 @@ import {
   LinkedInIcon, 
   InstagramIcon, 
   TikTokIcon, 
-  FacebookIcon, 
+  FacebookIcon,
+  WhatsAppIcon,
+  SnapchatIcon,
   LavenderSprigIcon,
   FlowerPetalOrnament
 } from './components/SocialIcons';
@@ -26,11 +28,6 @@ import {
 
 export default function App() {
   const currentPhoto = USER_INFO.defaultPortrait;
-  const [activeFilter, setActiveFilter] = useState<string>('all');
-
-  const filteredProfiles = activeFilter === 'all'
-    ? SOCIAL_PROFILES
-    : SOCIAL_PROFILES.filter(p => p.id === activeFilter);
 
   return (
     <div className="relative min-h-screen text-[#311E43] font-sans antialiased selection:bg-purple-200 selection:text-purple-900 pb-24 sm:pb-16">
@@ -73,51 +70,23 @@ export default function App() {
 
         {/* 4. SOCIAL MEDIA HUB PROFILES & DIRECT LINK BUTTONS */}
         <section className="space-y-6 mb-12 sm:mb-16" aria-labelledby="social-channels-heading">
-          {/* Section Title & Filter Tabs */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-purple-200/60">
-            <div>
-              <h2 id="social-channels-heading" className="text-2xl sm:text-3xl font-serif-elegant font-bold text-slate-900 tracking-tight">
-                Official Social Profiles
-              </h2>
-              <p className="text-xs sm:text-sm text-purple-900/70 mt-0.5">
-                Direct access to Michelle's 4 verified accounts across networks.
-              </p>
+          {/* Section Title */}
+          <div className="pb-3 border-b border-purple-200/60">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-700 uppercase tracking-wider mb-1">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Connect & Follow Michelle</span>
             </div>
-
-            {/* Filter Tabs */}
-            <div className="flex items-center gap-2 flex-wrap">
-              {/* Segmented Filter Control */}
-              <div className="flex items-center gap-1 p-1 bg-purple-100/60 rounded-xl border border-purple-200/60 text-xs">
-                <button
-                  onClick={() => setActiveFilter('all')}
-                  className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
-                    activeFilter === 'all'
-                      ? 'bg-white text-purple-900 shadow-xs'
-                      : 'text-purple-700 hover:text-purple-950'
-                  }`}
-                >
-                  All ({SOCIAL_PROFILES.length})
-                </button>
-                {SOCIAL_PROFILES.map((p) => (
-                  <button
-                    key={p.id}
-                    onClick={() => setActiveFilter(p.id)}
-                    className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
-                      activeFilter === p.id
-                        ? 'bg-white text-purple-900 shadow-xs'
-                        : 'text-purple-700 hover:text-purple-950'
-                    }`}
-                  >
-                    {p.name}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <h2 id="social-channels-heading" className="text-2xl sm:text-3xl font-serif-elegant font-bold text-slate-900 tracking-tight">
+              Official Social Profiles
+            </h2>
+            <p className="text-xs sm:text-sm text-purple-900/70 mt-0.5">
+              Tap any profile below to connect and follow Michelle across all 6 verified channels.
+            </p>
           </div>
 
           {/* Social Profiles Grid */}
           <div className="grid grid-cols-1 gap-4 sm:gap-5">
-            {filteredProfiles.map((profile, index) => (
+            {SOCIAL_PROFILES.map((profile, index) => (
               <SocialCard
                 key={profile.id}
                 profile={profile}
@@ -136,7 +105,7 @@ export default function App() {
               <FlowerPetalOrnament className="w-4 h-4 text-purple-400" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif-elegant font-bold text-slate-900">
-              Where to Connect for What
+              Where to Connect & Follow
             </h3>
           </div>
 
@@ -158,7 +127,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors pt-1"
               >
-                <span>Visit LinkedIn</span>
+                <span>Follow on LinkedIn</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -180,7 +149,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-semibold text-rose-600 hover:text-rose-800 transition-colors pt-1"
               >
-                <span>Visit Instagram</span>
+                <span>Follow on Instagram</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -202,7 +171,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors pt-1"
               >
-                <span>Visit Facebook</span>
+                <span>Follow on Facebook</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -237,50 +206,47 @@ export default function App() {
       </div>
 
       {/* Mobile Sticky Bottom Quick-Access Bar */}
-      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-purple-200/90 px-4 py-2.5 shadow-lg flex items-center justify-around">
-        <a
-          href={SOCIAL_PROFILES[0].url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-[#0A66C2] p-1.5 focus:outline-none"
-          aria-label="Open LinkedIn"
-        >
-          <LinkedInIcon className="w-5 h-5" />
-          <span className="text-[10px] font-medium text-slate-700">LinkedIn</span>
-        </a>
+      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-purple-200/90 px-2 py-2 shadow-lg flex items-center justify-around overflow-x-auto">
+        {SOCIAL_PROFILES.map((p) => {
+          const renderBottomIcon = () => {
+            switch (p.iconName) {
+              case 'whatsapp':
+                return <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />;
+              case 'tiktok':
+                return <TikTokIcon className="w-5 h-5 text-slate-900" />;
+              case 'snapchat':
+                return (
+                  <div className="w-5 h-5 rounded-md bg-[#FFFC00] flex items-center justify-center shadow-2xs border border-yellow-300">
+                    <SnapchatIcon className="w-3.5 h-3.5 text-black" />
+                  </div>
+                );
+              case 'linkedin':
+                return <LinkedInIcon className="w-5 h-5 text-[#0A66C2]" />;
+              case 'instagram':
+                return <InstagramIcon className="w-5 h-5 text-[#E1306C]" />;
+              case 'facebook':
+                return <FacebookIcon className="w-5 h-5 text-[#1877F2]" />;
+              default:
+                return null;
+            }
+          };
 
-        <a
-          href={SOCIAL_PROFILES[1].url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-[#E1306C] p-1.5 focus:outline-none"
-          aria-label="Open Instagram"
-        >
-          <InstagramIcon className="w-5 h-5" />
-          <span className="text-[10px] font-medium text-slate-700">Instagram</span>
-        </a>
-
-        <a
-          href={SOCIAL_PROFILES[2].url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-black p-1.5 focus:outline-none"
-          aria-label="Open TikTok"
-        >
-          <TikTokIcon className="w-5 h-5" />
-          <span className="text-[10px] font-medium text-slate-700">TikTok</span>
-        </a>
-
-        <a
-          href={SOCIAL_PROFILES[3].url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-[#1877F2] p-1.5 focus:outline-none"
-          aria-label="Open Facebook"
-        >
-          <FacebookIcon className="w-5 h-5" />
-          <span className="text-[10px] font-medium text-slate-700">Facebook</span>
-        </a>
+          return (
+            <a
+              key={p.id}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-0.5 px-1 py-0.5 focus:outline-none min-w-[46px]"
+              aria-label={`Open ${p.name}`}
+            >
+              {renderBottomIcon()}
+              <span className="text-[9px] font-medium text-slate-700 truncate max-w-[48px]">
+                {p.id === 'snapchat' ? 'Snap' : p.id === 'instagram' ? 'IG' : p.name}
+              </span>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
