@@ -18,11 +18,9 @@ import {
   FacebookIcon,
   WhatsAppIcon,
   SnapchatIcon,
-  LavenderSprigIcon,
-  FlowerPetalOrnament
+  LavenderSprigIcon
 } from './components/SocialIcons';
 import { 
-  ExternalLink, 
   Award
 } from 'lucide-react';
 
@@ -96,89 +94,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. PILLARS & ENGAGEMENT CARDS */}
-        <section className="mb-12 sm:mb-16">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center gap-1.5 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-1">
-              <FlowerPetalOrnament className="w-4 h-4 text-purple-400" />
-              <span>Digital Presence Pillars</span>
-              <FlowerPetalOrnament className="w-4 h-4 text-purple-400" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-serif-elegant font-bold text-slate-900">
-              Where to Connect & Follow
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {/* Card 1: Professional */}
-            <div className="rounded-2xl bg-white/90 border border-purple-200/80 p-5 shadow-xs space-y-3 relative overflow-hidden group hover:border-purple-300 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-200/80">
-                <LinkedInIcon className="w-5 h-5" />
-              </div>
-              <h4 className="font-semibold text-slate-900 text-base">
-                Professional & Leadership
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Connect on LinkedIn for career initiatives, enterprise collaboration, professional milestones, and leadership panels.
-              </p>
-              <a
-                href={SOCIAL_PROFILES[0].url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors pt-1"
-              >
-                <span>Follow on LinkedIn</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Card 2: Creative & Lifestyle */}
-            <div className="rounded-2xl bg-white/90 border border-purple-200/80 p-5 shadow-xs space-y-3 relative overflow-hidden group hover:border-purple-300 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-pink-50 text-rose-600 flex items-center justify-center border border-pink-200/80">
-                <InstagramIcon className="w-5 h-5" />
-              </div>
-              <h4 className="font-semibold text-slate-900 text-base">
-                Visual Stories & Reels
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Experience daily aesthetic moments, fashion, travel, and inspiring reels via Instagram and TikTok (@her_excellency74).
-              </p>
-              <a
-                href={SOCIAL_PROFILES[1].url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-rose-600 hover:text-rose-800 transition-colors pt-1"
-              >
-                <span>Follow on Instagram</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Card 3: Community & Conversation */}
-            <div className="rounded-2xl bg-white/90 border border-purple-200/80 p-5 shadow-xs space-y-3 relative overflow-hidden group hover:border-purple-300 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center border border-purple-200/80">
-                <FacebookIcon className="w-5 h-5 text-indigo-600" />
-              </div>
-              <h4 className="font-semibold text-slate-900 text-base">
-                Community & Life
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Join our Facebook community for public reflections, shared celebrations, student initiatives, and heartfelt interactions.
-              </p>
-              <a
-                href={SOCIAL_PROFILES[3].url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors pt-1"
-              >
-                <span>Follow on Facebook</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 6. FOOTER */}
+        {/* 5. FOOTER */}
         <footer className="pt-8 pb-12 border-t border-purple-200/70 text-center space-y-3">
           <div className="flex items-center justify-center gap-2 text-purple-700">
             <LavenderSprigIcon className="w-6 h-6" />
